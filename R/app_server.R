@@ -32,23 +32,6 @@ app_server <- function( input, output, session ) {
   output$coloured_word <- renderPlot(
     { coloured_word(l(), lc_hex()) }
   )
-
-  excluded_letters <- reactive({ 
-    vec <- l()[lc() == "gray"]
-    paste(vec, collapse = "")
-  })
-
-  wrong_spot <- reactive({
-    vec <- l()[lc() == "yellow"]
-    c(vec, rep("", 5 - length(vec))) 
-  })
-
-  known_count <- reactive({
-    vec <- l()[lc() == "green"]
-    vec2 <- rle(vec)$lengths
-    names(vec2) <- rle(vec)$values
-    vec2
-  })
   
   correct_letters <- reactive({
     vec <- l()
@@ -59,33 +42,38 @@ app_server <- function( input, output, session ) {
     }
     paste(vec, collapse = "")
   })
+
+  incorrect_letters <- reactive({ 
+    l()[lc() == "gray"]
+  })
+
+  wrong_spot <- reactive({
+    vec <- l()
+    for (i in seq_along(vec)) {
+      if (lc()[i] != "yellow") {
+        vec[i] <- "."
+      }
+    }
+    vec
+  })
   
   possible_words <- reactive({
-    filter_words(shinywordle::words,
-                 exact = correct_letters(),
-                 excluded_letters = excluded_letters(),
-                 wrong_spot = wrong_spot(),
-                 known_count = known_count()
-    )
-  })
-  
-  output$excluded_letters <- renderPrint({
-    excluded_letters()
-  })
-  
-  output$wrong_spot <- renderPrint({
-    wrong_spot()
-  })
-  
-  output$known_count <- renderPrint({
-    known_count()
+    words <- grep(correct_letters(), shinywordle::words, value = T)
   })
   
   output$correct_letters <- renderPrint({
     correct_letters()
   })
   
-  output$possible_words <- renderTable({
-    head(data.frame(word = possible_words()), 20)
+  output$incorrect_letters <- renderPrint({
+    incorrect_letters()
+  })
+  
+  output$wrong_spot <- renderPrint({
+    wrong_spot()
+  })
+  
+  output$possible_words <- renderText({
+    paste(possible_words(), collapse = ", ")
   })
 }

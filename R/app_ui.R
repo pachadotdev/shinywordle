@@ -12,10 +12,11 @@ app_ui <- function(request) {
     fluidPage(
       h1("shinywordle"),
       column(
-        4,
+        2,
         textInput(
           "l1",
-          "1st letter:"
+          "1st letter:",
+          value = "a"
         )
       ),
       
@@ -23,7 +24,8 @@ app_ui <- function(request) {
         2,
         textInput(
           "l2",
-          "2nd letter:"
+          "2nd letter:",
+          value = "t"
         )
       ),
       
@@ -31,7 +33,8 @@ app_ui <- function(request) {
         2,
         textInput(
           "l3",
-          "3rd letter:"
+          "3rd letter:",
+          value = "o"
         )
       ),
       
@@ -39,7 +42,8 @@ app_ui <- function(request) {
         2,
         textInput(
           "l4",
-          "4th letter:"
+          "4th letter:",
+          value = "n"
         )
       ),
       
@@ -47,12 +51,15 @@ app_ui <- function(request) {
         2,
         textInput(
           "l5",
-          "5th letter:"
+          "5th letter:",
+          value = "e"
         )
       ),
       
+      column(12, br()),
+      
       column(
-        4,
+        2,
         radioButtons(
           "l1c",
           "1st letter color:",
@@ -101,21 +108,21 @@ app_ui <- function(request) {
         )
       ),
       
-      br(),
+      column(12, br()),
       
       column(
-        4,
-        plotOutput("coloured_word", height = "200px")
+        5,
+        h2("Wordle result"),
+        plotOutput("coloured_word")
       ),
       
       column(
-        12,
+        5,
         h2("Possible words"),
-        # verbatimTextOutput("excluded_letters"),
-        # verbatimTextOutput("wrong_spot"),
-        # verbatimTextOutput("known_count"),
         # verbatimTextOutput("correct_letters"),
-        tableOutput("possible_words")
+        # verbatimTextOutput("incorrect_letters"),
+        # verbatimTextOutput("wrong_spot"),
+        textOutput("possible_words")
       )
     )
   )

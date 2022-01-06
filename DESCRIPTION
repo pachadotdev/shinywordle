@@ -11,8 +11,10 @@ Imports:
     glue,
     golem (>= 0.3.1),
     htmltools,
+    magrittr,
     pkgload,
-    shiny (>= 1.7.1)
+    shiny (>= 1.7.1),
+    stringr
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.2

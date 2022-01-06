@@ -1,0 +1,13 @@
+name: shinywordle
+title:
+username:
+account: pachamaltese
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 5399598
+bundleId: 5439179
+url: https://pachamaltese.shinyapps.io/shinywordle/
+when: 1641444378.15561
+lastSyncTime: 1641444378.15561
+asMultiple: FALSE
+asStatic: FALSE
