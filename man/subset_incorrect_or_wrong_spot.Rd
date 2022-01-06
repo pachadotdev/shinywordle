@@ -4,7 +4,7 @@
 \alias{subset_incorrect_or_wrong_spot}
 \title{Subset words from input}
 \usage{
-subset_incorrect_or_wrong_spot(wrong_spot, incorrect_letters)
+subset_incorrect_or_wrong_spot(list_of_words, wrong_spot, incorrect_letters)
 }
 \description{
 Subset words from input

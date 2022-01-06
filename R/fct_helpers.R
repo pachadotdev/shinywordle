@@ -17,29 +17,33 @@ coloured_word <- function (word, colours) {
 #' @importFrom magrittr %>%
 #' @importFrom stringr str_subset
 #' @export
-subset_incorrect_or_wrong_spot <- function(wrong_spot, incorrect_letters) {
-  letters2 <- paste0("[^", wrong_spot, "]")
-  letters2 <- gsub("\\[\\^\\.\\]", ".", letters2)
-  letters2 <- paste(letters2, collapse = "")
+subset_incorrect_or_wrong_spot <- function(list_of_words, wrong_spot, incorrect_letters) {
+  if (length(wrong_spot) > 0) {
+    wrong_spot <- paste0("[^", wrong_spot, "]")
+    wrong_spot <- gsub("\\[\\^\\.\\]", ".", wrong_spot)
+    wrong_spot <- paste(wrong_spot, collapse = "")
+    
+    # words5 %>%
+    #   # "irate" 🟨🟨⬛🟨🟨
+    #   str_subset("[^i][^r].[^t][^e]") %>%
+    #   str_subset("a", negate = TRUE) %>%
+    #   str_subset("i") %>%
+    #   str_subset("r") %>%
+    #   str_subset("t") %>%
+    #   str_subset("e") %>%
+    #   # "merit" ⬛🟨🟨🟨🟨
+    #   str_subset("m", negate = TRUE) %>%
+    #   str_subset(".[^e][^r][^i][^t]")
+    
+    list_of_words <- list_of_words %>%
+      str_subset(wrong_spot) %>% 
+      str_subset(paste(wrong_spot, collapse = "|"))
+  }
   
-  # words5 %>%
-  #   # "irate" 🟨🟨⬛🟨🟨
-  #   str_subset("[^i][^r].[^t][^e]") %>%
-  #   str_subset("a", negate = TRUE) %>%
-  #   str_subset("i") %>%
-  #   str_subset("r") %>%
-  #   str_subset("t") %>%
-  #   str_subset("e") %>%
-  #   # "merit" ⬛🟨🟨🟨🟨
-  #   str_subset("m", negate = TRUE) %>%
-  #   str_subset(".[^e][^r][^i][^t]")
+  # list_of_words <- list_of_words %>% 
+  #   str_subset(paste(incorrect_letters, collapse = "|"), negate = TRUE)
   
-  words <- shinywordle::words %>%
-    str_subset(letters2)
+  list_of_words <- grep(incorrect_letters, list_of_words, value = T, invert = T)
   
-  words <- words %>% 
-    str_subset(paste(incorrect_letters, collapse = "|"), negate = TRUE)
-  
-  words <- words %>% 
-    str_subset(paste(wrong_spot, collapse = "|"))
+  list_of_words
 }

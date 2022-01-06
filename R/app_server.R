@@ -44,7 +44,13 @@ app_server <- function( input, output, session ) {
   })
 
   incorrect_letters <- reactive({ 
-    l()[lc() == "gray"]
+    vec <- l()
+    for (i in seq_along(vec)) {
+      if (lc()[i] != "gray") {
+        vec[i] <- "."
+      }
+    }
+    paste(vec, collapse = "")
   })
 
   wrong_spot <- reactive({
@@ -59,6 +65,7 @@ app_server <- function( input, output, session ) {
   
   possible_words <- reactive({
     words <- grep(correct_letters(), shinywordle::words, value = T)
+    subset_incorrect_or_wrong_spot(words, wrong_spot(), incorrect_letters())
   })
   
   output$correct_letters <- renderPrint({
