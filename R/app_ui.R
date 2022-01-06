@@ -10,7 +10,113 @@ app_ui <- function(request) {
     golem_add_external_resources(),
     # Your application UI logic 
     fluidPage(
-      h1("shinywordle")
+      h1("shinywordle"),
+      column(
+        4,
+        textInput(
+          "l1",
+          "1st letter:"
+        )
+      ),
+      
+      column(
+        2,
+        textInput(
+          "l2",
+          "2nd letter:"
+        )
+      ),
+      
+      column(
+        2,
+        textInput(
+          "l3",
+          "3rd letter:"
+        )
+      ),
+      
+      column(
+        2,
+        textInput(
+          "l4",
+          "4th letter:"
+        )
+      ),
+      
+      column(
+        2,
+        textInput(
+          "l5",
+          "5th letter:"
+        )
+      ),
+      
+      column(
+        4,
+        radioButtons(
+          "l1c",
+          "1st letter color:",
+          choices = c("gray", "green", "yellow"),
+          selected = "gray"
+        )
+      ),
+      
+      column(
+        2,
+        radioButtons(
+          "l2c",
+          "2nd letter color:",
+          choices = c("gray", "green", "yellow"),
+          selected = "gray"
+        )
+      ),
+      
+      column(
+        2,
+        radioButtons(
+          "l3c",
+          "3rd letter color:",
+          choices = c("gray", "green", "yellow"),
+          selected = "gray"
+        )
+      ),
+      
+      column(
+        2,
+        radioButtons(
+          "l4c",
+          "4th letter color:",
+          choices = c("gray", "green", "yellow"),
+          selected = "gray"
+        )
+      ),
+      
+      column(
+        2,
+        radioButtons(
+          "l5c",
+          "5th letter color:",
+          choices = c("gray", "green", "yellow"),
+          selected = "gray"
+        )
+      ),
+      
+      br(),
+      
+      column(
+        4,
+        plotOutput("coloured_word", height = "200px")
+      ),
+      
+      column(
+        12,
+        h2("Possible words"),
+        # verbatimTextOutput("excluded_letters"),
+        # verbatimTextOutput("wrong_spot"),
+        # verbatimTextOutput("known_count"),
+        # verbatimTextOutput("correct_letters"),
+        tableOutput("possible_words")
+      )
     )
   )
 }
