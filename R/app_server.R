@@ -328,7 +328,12 @@ app_server <- function( input, output, session ) {
     words <- subset_wrong_spot(words, wrong_spot_2())
     words <- subset_wrong_spot(words, wrong_spot_3())
     words <- subset_wrong_spot(words, wrong_spot_4())
-    words <- subset_incorrect_letters(words, incorrect_letters())
+    words <- subset_incorrect_letters(words, 
+      incorrect_letters()[!incorrect_letters() %in% 
+                            c(wrong_spot_4(),
+                              wrong_spot_3(),
+                              wrong_spot_2(),
+                              wrong_spot_1())])
     words
   })
   
@@ -341,7 +346,7 @@ app_server <- function( input, output, session ) {
   })
   
   output$wrong_spot <- renderPrint({
-    wrong_spot_3()
+    wrong_spot_4()
   })
   
   output$possible_words <- renderText({
