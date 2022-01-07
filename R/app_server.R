@@ -284,20 +284,50 @@ app_server <- function( input, output, session ) {
     vec
   })
   
-  # incorrect_letters <- paste0(
-  #   unique(
-  #     unlist(
-  #       paste(incorrect_letters_1, incorrect_letters_2, incorrect_letters_3,
-  #         incorrect_letters_4)
-  #     )
-  #   )
-  # )
-  
+  wrong_spot_4 <- reactive({
+    vec <- if (nchar(w4()) > 0) {
+      l4()
+    } else {
+      if (nchar(w3()) > 0) { 
+        l3()
+      } else {
+        if (nchar(w2()) > 0) {
+          l2()
+        } else {
+          l1()
+        }
+      }
+    }
+    
+    vec_col <- if (nchar(w4()) > 0) {
+      lc4()
+    } else {
+      if (nchar(w3()) > 0) { 
+        lc3()
+      } else {
+        if (nchar(w2()) > 0) {
+          lc2()
+        } else {
+          lc1()
+        }
+      }
+    }
+    
+    for (i in seq_along(vec)) {
+      if (vec_col[i] != "yellow") {
+        vec[i] <- "."
+      }
+    }
+    
+    vec
+  })  
+
   possible_words <- reactive({
     words <- grep(correct_letters(), shinywordle::words, value = T)
     words <- subset_wrong_spot(words, wrong_spot_1())
     words <- subset_wrong_spot(words, wrong_spot_2())
     words <- subset_wrong_spot(words, wrong_spot_3())
+    words <- subset_wrong_spot(words, wrong_spot_4())
     words <- subset_incorrect_letters(words, incorrect_letters())
     words
   })

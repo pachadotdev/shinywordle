@@ -256,6 +256,128 @@ app_ui <- function(request) {
         )
       ),
       
+      # word 5 ----
+      
+      column(
+        2,
+        textInput(
+          "w5",
+          "Fifth Word:",
+          value = ""
+        )
+      ),
+      
+      column(
+        2,
+        radioButtons(
+          "lc51",
+          "1st letter color:",
+          choices = c("gray", "green", "yellow"),
+          selected = "gray"
+        )
+      ),
+      
+      column(
+        2,
+        radioButtons(
+          "lc52",
+          "2nd letter color:",
+          choices = c("gray", "green", "yellow"),
+          selected = "gray"
+        )
+      ),
+      
+      column(
+        2,
+        radioButtons(
+          "lc53",
+          "3rd letter color:",
+          choices = c("gray", "green", "yellow"),
+          selected = "gray"
+        )
+      ),
+      
+      column(
+        2,
+        radioButtons(
+          "lc54",
+          "4th letter color:",
+          choices = c("gray", "green", "yellow"),
+          selected = "gray"
+        )
+      ),
+      
+      column(
+        2,
+        radioButtons(
+          "lc55",
+          "5th letter color:",
+          choices = c("gray", "green", "yellow"),
+          selected = "gray"
+        )
+      ),
+      
+      # word 6 ----
+      
+      column(
+        2,
+        textInput(
+          "w6",
+          "Sixth Word:",
+          value = ""
+        )
+      ),
+      
+      column(
+        2,
+        radioButtons(
+          "lc61",
+          "1st letter color:",
+          choices = c("gray", "green", "yellow"),
+          selected = "gray"
+        )
+      ),
+      
+      column(
+        2,
+        radioButtons(
+          "lc62",
+          "2nd letter color:",
+          choices = c("gray", "green", "yellow"),
+          selected = "gray"
+        )
+      ),
+      
+      column(
+        2,
+        radioButtons(
+          "lc63",
+          "3rd letter color:",
+          choices = c("gray", "green", "yellow"),
+          selected = "gray"
+        )
+      ),
+      
+      column(
+        2,
+        radioButtons(
+          "lc64",
+          "4th letter color:",
+          choices = c("gray", "green", "yellow"),
+          selected = "gray"
+        )
+      ),
+      
+      column(
+        2,
+        radioButtons(
+          "lc65",
+          "5th letter color:",
+          choices = c("gray", "green", "yellow"),
+          selected = "gray"
+        )
+      ),
+      
       # results ----
       
       column(
