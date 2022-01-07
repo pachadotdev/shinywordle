@@ -2,7 +2,7 @@
 
 export(coloured_word)
 export(run_app)
-export(subset_incorrect_or_wrong_spot)
+export(subset_wrong_spot)
 import(shiny)
 importFrom(golem,activate_js)
 importFrom(golem,add_resource_path)

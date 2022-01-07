@@ -11,57 +11,22 @@ app_ui <- function(request) {
     # Your application UI logic 
     fluidPage(
       h1("shinywordle"),
-      column(
-        2,
-        textInput(
-          "l1",
-          "1st letter:",
-          value = "a"
-        )
-      ),
+      
+      # word 1 ----
       
       column(
         2,
         textInput(
-          "l2",
-          "2nd letter:",
-          value = "t"
+          "w1",
+          "First Word:",
+          value = ""
         )
       ),
-      
-      column(
-        2,
-        textInput(
-          "l3",
-          "3rd letter:",
-          value = "o"
-        )
-      ),
-      
-      column(
-        2,
-        textInput(
-          "l4",
-          "4th letter:",
-          value = "n"
-        )
-      ),
-      
-      column(
-        2,
-        textInput(
-          "l5",
-          "5th letter:",
-          value = "e"
-        )
-      ),
-      
-      column(12, br()),
       
       column(
         2,
         radioButtons(
-          "l1c",
+          "lc11",
           "1st letter color:",
           choices = c("gray", "green", "yellow"),
           selected = "gray"
@@ -71,7 +36,7 @@ app_ui <- function(request) {
       column(
         2,
         radioButtons(
-          "l2c",
+          "lc12",
           "2nd letter color:",
           choices = c("gray", "green", "yellow"),
           selected = "gray"
@@ -81,7 +46,7 @@ app_ui <- function(request) {
       column(
         2,
         radioButtons(
-          "l3c",
+          "lc13",
           "3rd letter color:",
           choices = c("gray", "green", "yellow"),
           selected = "gray"
@@ -91,7 +56,7 @@ app_ui <- function(request) {
       column(
         2,
         radioButtons(
-          "l4c",
+          "lc14",
           "4th letter color:",
           choices = c("gray", "green", "yellow"),
           selected = "gray"
@@ -101,27 +66,210 @@ app_ui <- function(request) {
       column(
         2,
         radioButtons(
-          "l5c",
+          "lc15",
           "5th letter color:",
           choices = c("gray", "green", "yellow"),
           selected = "gray"
         )
       ),
       
-      column(12, br()),
+      # word 2 ----
       
       column(
-        5,
+        2,
+        textInput(
+          "w2",
+          "Second Word:",
+          value = ""
+        )
+      ),
+      
+      column(
+        2,
+        radioButtons(
+          "lc21",
+          "1st letter color:",
+          choices = c("gray", "green", "yellow"),
+          selected = "gray"
+        )
+      ),
+      
+      column(
+        2,
+        radioButtons(
+          "lc22",
+          "2nd letter color:",
+          choices = c("gray", "green", "yellow"),
+          selected = "gray"
+        )
+      ),
+      
+      column(
+        2,
+        radioButtons(
+          "lc23",
+          "3rd letter color:",
+          choices = c("gray", "green", "yellow"),
+          selected = "gray"
+        )
+      ),
+      
+      column(
+        2,
+        radioButtons(
+          "lc24",
+          "4th letter color:",
+          choices = c("gray", "green", "yellow"),
+          selected = "gray"
+        )
+      ),
+      
+      column(
+        2,
+        radioButtons(
+          "lc25",
+          "5th letter color:",
+          choices = c("gray", "green", "yellow"),
+          selected = "gray"
+        )
+      ),
+      
+      # word 3 ----
+      
+      column(
+        2,
+        textInput(
+          "w3",
+          "Third Word:",
+          value = ""
+        )
+      ),
+      
+      column(
+        2,
+        radioButtons(
+          "lc31",
+          "1st letter color:",
+          choices = c("gray", "green", "yellow"),
+          selected = "gray"
+        )
+      ),
+      
+      column(
+        2,
+        radioButtons(
+          "lc32",
+          "2nd letter color:",
+          choices = c("gray", "green", "yellow"),
+          selected = "gray"
+        )
+      ),
+      
+      column(
+        2,
+        radioButtons(
+          "lc33",
+          "3rd letter color:",
+          choices = c("gray", "green", "yellow"),
+          selected = "gray"
+        )
+      ),
+      
+      column(
+        2,
+        radioButtons(
+          "lc34",
+          "4th letter color:",
+          choices = c("gray", "green", "yellow"),
+          selected = "gray"
+        )
+      ),
+      
+      column(
+        2,
+        radioButtons(
+          "lc35",
+          "5th letter color:",
+          choices = c("gray", "green", "yellow"),
+          selected = "gray"
+        )
+      ),
+      
+      # word 4 ----
+      
+      column(
+        2,
+        textInput(
+          "w4",
+          "Fourth Word:",
+          value = ""
+        )
+      ),
+      
+      column(
+        2,
+        radioButtons(
+          "lc41",
+          "1st letter color:",
+          choices = c("gray", "green", "yellow"),
+          selected = "gray"
+        )
+      ),
+      
+      column(
+        2,
+        radioButtons(
+          "lc42",
+          "2nd letter color:",
+          choices = c("gray", "green", "yellow"),
+          selected = "gray"
+        )
+      ),
+      
+      column(
+        2,
+        radioButtons(
+          "lc43",
+          "3rd letter color:",
+          choices = c("gray", "green", "yellow"),
+          selected = "gray"
+        )
+      ),
+      
+      column(
+        2,
+        radioButtons(
+          "lc44",
+          "4th letter color:",
+          choices = c("gray", "green", "yellow"),
+          selected = "gray"
+        )
+      ),
+      
+      column(
+        2,
+        radioButtons(
+          "lc45",
+          "5th letter color:",
+          choices = c("gray", "green", "yellow"),
+          selected = "gray"
+        )
+      ),
+      
+      # results ----
+      
+      column(
+        6,
         h2("Wordle result"),
         plotOutput("coloured_word")
       ),
       
       column(
-        5,
+        6,
         h2("Possible words"),
-        # verbatimTextOutput("correct_letters"),
-        # verbatimTextOutput("incorrect_letters"),
-        # verbatimTextOutput("wrong_spot"),
+        verbatimTextOutput("correct_letters"),
+        verbatimTextOutput("incorrect_letters"),
+        verbatimTextOutput("wrong_spot"),
         textOutput("possible_words")
       )
     )

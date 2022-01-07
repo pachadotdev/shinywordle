@@ -17,7 +17,7 @@ coloured_word <- function (word, colours) {
 #' @importFrom magrittr %>%
 #' @importFrom stringr str_subset
 #' @export
-subset_incorrect_or_wrong_spot <- function(list_of_words, wrong_spot, incorrect_letters) {
+subset_wrong_spot <- function(list_of_words, wrong_spot) {
   if (length(wrong_spot) > 0) {
     wrong_spot <- paste0("[^", wrong_spot, "]")
     wrong_spot <- gsub("\\[\\^\\.\\]", ".", wrong_spot)
@@ -37,13 +37,20 @@ subset_incorrect_or_wrong_spot <- function(list_of_words, wrong_spot, incorrect_
     
     list_of_words <- list_of_words %>%
       str_subset(wrong_spot) %>% 
-      str_subset(paste(wrong_spot, collapse = "|"))
+      str_subset(paste(
+        str_subset(unique(unlist(strsplit(wrong_spot, ""))), "[a-z]"), 
+        collapse = "|"))
   }
   
+  list_of_words
+}
+
+subset_incorrect_letters <- function(list_of_words, incorrect_letters) {
   # list_of_words <- list_of_words %>% 
   #   str_subset(paste(incorrect_letters, collapse = "|"), negate = TRUE)
   
-  list_of_words <- grep(incorrect_letters, list_of_words, value = T, invert = T)
+  list_of_words <- grep(paste(incorrect_letters, collapse = "|"), 
+                        list_of_words, value = T, invert = T)
   
   list_of_words
 }
