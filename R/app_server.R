@@ -109,10 +109,39 @@ app_server <- function( input, output, session ) {
     vec
   })
   
+  # word 5 ----
+  
+  w5 <- reactive({ input$w5 })
+  l51 <- reactive({ substr(w4(), 1, 1) })
+  l52 <- reactive({ substr(w4(), 2, 2) })
+  l53 <- reactive({ substr(w4(), 3, 3) })
+  l54 <- reactive({ substr(w4(), 4, 4) })
+  l55 <- reactive({ substr(w4(), 5, 5) })
+  
+  lc51 <- reactive({ input$lc51 })
+  lc52 <- reactive({ input$lc52 })
+  lc53 <- reactive({ input$lc53 })
+  lc54 <- reactive({ input$lc54 })
+  lc55 <- reactive({ input$lc55 })
+  
+  l5 <- reactive({ tolower(c(l51(), l52(), l53(), l54(), l55())) })
+  
+  lc5 <- reactive({ c(lc51(), lc52(), lc53(), lc54(), lc55()) })
+  
+  lc5_hex <- reactive({ 
+    vec <- gsub("gray", "#787b7d", lc5()) 
+    vec <- gsub("yellow", "#c2b359", vec)
+    vec <- gsub("green", "#6ba864", vec)
+    vec
+  })
+  
   # results ----
   
   output$coloured_word <- renderPlot({
-    ln <- if (nchar(w4()) > 0) {
+    ln <- if (nchar(w5()) > 0) {
+      l5()
+    } else {
+      if (nchar(w4()) > 0) {
         l4()
       } else {
         if (nchar(w3()) > 0) { 
@@ -125,8 +154,12 @@ app_server <- function( input, output, session ) {
           }
         }
       }
+    }
     
-    lcn_hex <- if (nchar(w4()) > 0) {
+    lcn_hex <- if (nchar(w5()) > 0) {
+      lc5()  
+    } else {
+      if (nchar(w4()) > 0) {
         lc4_hex()
       } else {
         if (nchar(w3()) > 0) { 
@@ -139,35 +172,44 @@ app_server <- function( input, output, session ) {
           }
         }
       }
+    }
     
     coloured_word(ln, lcn_hex) 
   })
   
   correct_letters <- reactive({
-    vec <- if (nchar(w4()) > 0) {
-      l4()
-    } else {
-      if (nchar(w3()) > 0) { 
-        l3()
+    vec <- if (nchar(w5()) > 0) {
+      l5()
+    } else { 
+      if (nchar(w4()) > 0) {
+        l4()
       } else {
-        if (nchar(w2()) > 0) {
-          l2()
+        if (nchar(w3()) > 0) { 
+          l3()
         } else {
-          l1()
+          if (nchar(w2()) > 0) {
+            l2()
+          } else {
+            l1()
+          }
         }
       }
     }
     
-    vec_col <- if (nchar(w4()) > 0) {
-      lc4()
+    vec_col <- if (nchar(w5()) > 0) {
+      lc5() 
     } else {
-      if (nchar(w3()) > 0) { 
-        lc3()
+      if (nchar(w4()) > 0) {
+        lc4()
       } else {
-        if (nchar(w2()) > 0) {
-          lc2()
+        if (nchar(w3()) > 0) { 
+          lc3()
         } else {
-          lc1()
+          if (nchar(w2()) > 0) {
+            lc2()
+          } else {
+            lc1()
+          }
         }
       }
     }
@@ -182,30 +224,38 @@ app_server <- function( input, output, session ) {
   })
 
   incorrect_letters <- reactive({ 
-    vec <- if (nchar(w4()) > 0) {
-      c(l4(), l3(), l2(), l1())
+    vec <- if (nchar(w5()) > 0) {
+      c(l5(), l4(), l3(), l2(), l1())
     } else {
-      if (nchar(w3()) > 0) { 
-        c(l3(), l2(), l1())
+      if (nchar(w4()) > 0) {
+        c(l4(), l3(), l2(), l1())
       } else {
-        if (nchar(w2()) > 0) {
-          c(l2(), l1())
+        if (nchar(w3()) > 0) { 
+          c(l3(), l2(), l1())
         } else {
-          l1()
+          if (nchar(w2()) > 0) {
+            c(l2(), l1())
+          } else {
+            l1()
+          }
         }
       }
     }
     
-    vec_col <- if (nchar(w4()) > 0) {
-      c(lc4(), lc3(), lc2(), lc1())
+    vec_col <- if (nchar(w5()) > 0) {
+      c(lc5(), lc4(), lc3(), lc2(), lc1())
     } else {
-      if (nchar(w3()) > 0) { 
-        c(lc3(), lc2(), lc1())
+      if (nchar(w4()) > 0) {
+        c(lc4(), lc3(), lc2(), lc1())
       } else {
-        if (nchar(w2()) > 0) {
-          c(lc2(), lc1())
+        if (nchar(w3()) > 0) { 
+          c(lc3(), lc2(), lc1())
         } else {
-          lc1()
+          if (nchar(w2()) > 0) {
+            c(lc2(), lc1())
+          } else {
+            lc1()
+          }
         }
       }
     }
@@ -321,6 +371,52 @@ app_server <- function( input, output, session ) {
     
     vec
   })  
+  
+  wrong_spot_5 <- reactive({
+    vec <- if (nchar(w5()) > 0) {
+      l5()
+    } else { 
+      if (nchar(w4()) > 0) {
+        l4()
+      } else {
+        if (nchar(w3()) > 0) { 
+          l3()
+        } else {
+          if (nchar(w2()) > 0) {
+            l2()
+          } else {
+            l1()
+          }
+        }
+      }
+    }
+    
+    vec_col <- if (nchar(w5()) > 0) {
+      lc5()  
+    } else {
+      if (nchar(w4()) > 0) {
+        lc4()
+      } else {
+        if (nchar(w3()) > 0) { 
+          lc3()
+        } else {
+          if (nchar(w2()) > 0) {
+            lc2()
+          } else {
+            lc1()
+          }
+        }
+      }
+    }
+    
+    for (i in seq_along(vec)) {
+      if (vec_col[i] != "yellow") {
+        vec[i] <- "."
+      }
+    }
+    
+    vec
+  })  
 
   possible_words <- reactive({
     words <- grep(correct_letters(), shinywordle::words, value = T)
@@ -328,6 +424,7 @@ app_server <- function( input, output, session ) {
     words <- subset_wrong_spot(words, wrong_spot_2())
     words <- subset_wrong_spot(words, wrong_spot_3())
     words <- subset_wrong_spot(words, wrong_spot_4())
+    words <- subset_wrong_spot(words, wrong_spot_5())
     words <- subset_incorrect_letters(words, 
       incorrect_letters()[!incorrect_letters() %in% 
                             c(wrong_spot_4(),

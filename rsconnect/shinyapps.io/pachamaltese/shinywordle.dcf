@@ -5,9 +5,9 @@ account: pachamaltese
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 5399598
-bundleId: 5439214
+bundleId: 5443550
 url: https://pachamaltese.shinyapps.io/shinywordle/
-when: 1641446096.50091
-lastSyncTime: 1641446096.50092
+when: 1641550010.81252
+lastSyncTime: 1641550010.81254
 asMultiple: FALSE
 asStatic: FALSE

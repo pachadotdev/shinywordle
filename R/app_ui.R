@@ -317,67 +317,6 @@ app_ui <- function(request) {
         )
       ),
       
-      # word 6 ----
-      
-      column(
-        2,
-        textInput(
-          "w6",
-          "Sixth Word:",
-          value = ""
-        )
-      ),
-      
-      column(
-        2,
-        radioButtons(
-          "lc61",
-          "1st letter color:",
-          choices = c("gray", "green", "yellow"),
-          selected = "gray"
-        )
-      ),
-      
-      column(
-        2,
-        radioButtons(
-          "lc62",
-          "2nd letter color:",
-          choices = c("gray", "green", "yellow"),
-          selected = "gray"
-        )
-      ),
-      
-      column(
-        2,
-        radioButtons(
-          "lc63",
-          "3rd letter color:",
-          choices = c("gray", "green", "yellow"),
-          selected = "gray"
-        )
-      ),
-      
-      column(
-        2,
-        radioButtons(
-          "lc64",
-          "4th letter color:",
-          choices = c("gray", "green", "yellow"),
-          selected = "gray"
-        )
-      ),
-      
-      column(
-        2,
-        radioButtons(
-          "lc65",
-          "5th letter color:",
-          choices = c("gray", "green", "yellow"),
-          selected = "gray"
-        )
-      ),
-      
       # results ----
       
       column(
@@ -389,9 +328,9 @@ app_ui <- function(request) {
       column(
         6,
         h2("Possible words"),
-        verbatimTextOutput("correct_letters"),
-        verbatimTextOutput("incorrect_letters"),
-        verbatimTextOutput("wrong_spot"),
+        # verbatimTextOutput("correct_letters"),
+        # verbatimTextOutput("incorrect_letters"),
+        # verbatimTextOutput("wrong_spot"),
         textOutput("possible_words")
       )
     )
